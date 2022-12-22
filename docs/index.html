@@ -6,6 +6,13 @@
     <title>Unity WebGL Player | AppleCrash</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+	<script>
+	window.game_start=function(n)
+	{
+		setTimeout(n, 3000);
+	}
+	</script>
+
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -59,9 +66,9 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/docs.loader.js";
       var config = {
-        dataUrl: buildUrl + "/docs.data.br",
-        frameworkUrl: buildUrl + "/docs.framework.js.br",
-        codeUrl: buildUrl + "/docs.wasm.br",
+        dataUrl: buildUrl + "/docs.data",
+        frameworkUrl: buildUrl + "/docs.framework.js",
+        codeUrl: buildUrl + "/docs.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Morningset",
         productName: "AppleCrash",
