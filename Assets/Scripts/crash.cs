@@ -20,8 +20,8 @@ public class crash : MonoBehaviour
         _scale.x += 10.0f * Time.deltaTime;
         _scale.y += 10.0f * Time.deltaTime;
         _scale = Vector3.Min(_scale,  Vector3.one);
-        _alpha -= 2;
-        if(_alpha < 2){
+        _alpha -= 8;
+        if(_alpha < 8){
             Destroy(gameObject);
         }
     }
