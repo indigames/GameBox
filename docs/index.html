@@ -7,9 +7,15 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
 	<script>
-	window.game_start=function(n)
-	{
+
+	window.game_start=function(n){
 		setTimeout(n, 3000);
+	}
+	window.GameStart=function(){
+		var callback_start =function( ) {
+			unityInstance.SendMessage("KantanGameBox", "GameStartResult");
+		};
+		game_start(callback_start);
 	}
 	</script>
 
