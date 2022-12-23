@@ -125,9 +125,10 @@
 			window.alert("Game Start");
 
 			var callback_start =function( ) {
+				window.alert("Callback");
 				unityInstance.SendMessage("KantanGameBox", "GameStartResult");
 			};
-			game_start(callback_start);
+			window.game_start(callback_start);
 		}
 
 
