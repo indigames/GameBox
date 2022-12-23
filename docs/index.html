@@ -6,19 +6,6 @@
     <title>Unity WebGL Player | AppleCrash</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-	<script>
-
-	window.game_start=function(n){
-		setTimeout(n, 3000);
-	}
-	window.GameStart=function(){
-		var callback_start =function( ) {
-			unityInstance.SendMessage("KantanGameBox", "GameStartResult");
-		};
-		game_start(callback_start);
-	}
-	</script>
-
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -129,6 +116,20 @@
             };
 
       document.body.appendChild(script);
+
+		window.game_start=function(n){
+			setTimeout(n, 3000);
+		}
+
+		window.GameStart=function(){
+			window.alert("Game Start");
+
+			var callback_start =function( ) {
+				unityInstance.SendMessage("KantanGameBox", "GameStartResult");
+			};
+			game_start(callback_start);
+		}
+
 
     </script>
   </body>
