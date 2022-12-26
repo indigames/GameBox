@@ -110,16 +110,18 @@
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
                 };
+
+                window.alert("ready-js");
+                unityInstance.SendMessage("KantanGameBox", "Ready");
+
               }).catch((message) => {
                 alert(message);
               });
+
+
             };
 
       document.body.appendChild(script);
-      window.alert("ready-js");
-      unityInstance.SendMessage("KantanGameBox", "Ready");
-
-
 
 		window.game_start=function(n){
 			setTimeout(n, 3000);
