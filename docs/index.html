@@ -31,6 +31,7 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
+
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
       // If type=='warning', a yellow highlight color is used.
@@ -116,7 +117,7 @@
 
       document.body.appendChild(script);
 
-	  unityInstance.SendMessage("KantanGameBox", "GameStartResult");
+	  unityInstance.SendMessage("KantanGameBox", "Ready");
 
 
 		window.game_start=function(n){
@@ -124,15 +125,11 @@
 		}
 
 		window.GameStart=function(){
-			window.alert("Game Start");
-
 			var callback_start =function( ) {
-				window.alert("Callback");
-				unityInstance.SendMessage("KantanGameBox", "GameStartResult");
+				unityInstance.SendMessage("KantanGameBox", "GameStartFinish");
 			};
 			window.game_start(callback_start);
 		}
-
 
     </script>
   </body>
