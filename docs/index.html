@@ -126,7 +126,9 @@
       }
 
       window.GameStart=function(){
+        window.alert("gamestart-js");
         var callback_start =function( ) {
+          window.alert("callback-js");
           unityInstance.SendMessage("KantanGameBox", "GameStartFinish");
         };
         window.game_start(callback_start);
