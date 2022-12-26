@@ -109,8 +109,6 @@
                 loadingBar.style.display = "none";
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
-                  window.alert("ready");
-                  unityInstance.SendMessage("KantanGameBox", "Ready");
                 };
               }).catch((message) => {
                 alert(message);
@@ -118,6 +116,8 @@
             };
 
       document.body.appendChild(script);
+      window.alert("ready");
+      unityInstance.SendMessage("KantanGameBox", "Ready");
 
 
 
