@@ -114,21 +114,20 @@
                 alert(message);
               });
               unityInstance.SendMessage("KantanGameBox", "Ready");
-
             };
 
       document.body.appendChild(script);
 
-		window.game_start=function(n){
-			setTimeout(n, 3000);
-		}
+      window.game_start=function(n){
+        setTimeout(n, 3000);
+      }
 
-		window.GameStart=function(){
-			var callback_start =function( ) {
-				unityInstance.SendMessage("KantanGameBox", "GameStartFinish");
-			};
-			window.game_start(callback_start);
-		}
+      window.GameStart=function(){
+        var callback_start =function( ) {
+          unityInstance.SendMessage("KantanGameBox", "GameStartFinish");
+        };
+        window.game_start(callback_start);
+      }
 
     </script>
   </body>
