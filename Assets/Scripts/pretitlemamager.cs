@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class pretitlemamager : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         KantanGameBox.GameStart();
-        Application.LoadLevel("TitleScene");
+    }
+    void Update()
+    {
+        if(KantanGameBox.IsGameStartFinish())
+            Application.LoadLevel("TitleScene");
     }
 }
