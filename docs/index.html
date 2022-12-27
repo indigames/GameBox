@@ -131,10 +131,18 @@
       }
       window.game_save=function(n){
         window.alert("game_save-js :" + n.data);
+        document.cookie = 'data=' + n.data;
         setTimeout(n.callback, 3000);
       }
       window.game_get_data=function(n){
-        var data = JSON.stringify({total_score: 100});
+        var data = JSON.stringify({});
+        let r = document.cookie.split(';');
+        r.forEach(function(value) {
+          let content = value.split('=');
+          if(content[0]=="data"){
+            data = content[1]
+          }
+         })
         window.alert("game_getdata-js :" + data);
         setTimeout(n.callback(data), 3000);
       }
@@ -143,7 +151,6 @@
         setTimeout(n.reward_success_callback, 3000);
         setTimeout(n.reward_fail_callback, 3000);
       }
-
 
       window.GameStart=function(){
         window.alert("gamestart-js");

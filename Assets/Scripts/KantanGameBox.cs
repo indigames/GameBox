@@ -44,7 +44,6 @@ public class KantanGameBox : MonoBehaviour
         ModeShowRewardAd,
         ModeShowRewardAdWait,
         ModeShowRewardAdFinish,
-
     }
 
     private static Mode mode = Mode.ModeIdle;
@@ -148,7 +147,7 @@ public class KantanGameBox : MonoBehaviour
         }
     }
 
-    public static void GameSave(int data){
+    public static void GameSave(string data){
         _data = data;
         mode = Mode.ModeGameSave;
     }
@@ -199,6 +198,9 @@ public class KantanGameBox : MonoBehaviour
         return (mode == Mode.ModeShowRewardAdFinish);
     }
 
+    public static bool IsRewardAdSuccess(){
+        return _success;
+    }
 
 
 }

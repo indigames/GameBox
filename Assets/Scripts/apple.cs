@@ -47,9 +47,11 @@ public class apple : MonoBehaviour
         Add(transform.position);
         Destroy(gameObject);
         Count--;
+        PlayerInfo.SetScore(PlayerInfo.GetScore()+1);
+        manager.score.text = String.Format("SCORE:{0}  TOTAL:{1}", PlayerInfo.GetScore(), PlayerInfo.GetTotalScore());
+
     }
  
-
     public crash Add(Vector3 pos)
     {
         GameObject g = Instantiate (Crash, pos, Quaternion.identity) as GameObject;
@@ -69,8 +71,8 @@ public class apple : MonoBehaviour
         get { return _rigidbody2D ?? (_rigidbody2D = gameObject.GetComponent<Rigidbody2D> ()); }
     }
 
-    float _width = 0.0f;
-    float _height = 0.0f;
+    //float _width = 0.0f;
+    //float _height = 0.0f;
 
     public static int Count = 0;
 
