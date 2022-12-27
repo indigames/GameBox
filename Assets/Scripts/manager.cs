@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class manager : MonoBehaviour
 {
@@ -16,8 +16,13 @@ public class manager : MonoBehaviour
     {
         state = 0;
         adMode = 0;
-        score.text = String.Format("SCORE:{0}  TOTAL:{1}", PlayerInfo.GetScore(), PlayerInfo.GetTotalScore());
+        UpdateScore();
     }
+
+    public void UpdateScore(){
+        score.text = string.Format("SCORE:{0}  TOTAL:{1}", PlayerInfo.GetScore(), PlayerInfo.GetTotalScore());
+    }
+
 
     // Update is called once per frame
     void Update()
