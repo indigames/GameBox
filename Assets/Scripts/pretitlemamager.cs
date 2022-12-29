@@ -12,7 +12,7 @@ public class pretitlemamager : MonoBehaviour
     void Update()
     {
         if(KantanGameBox.IsGameGetDataFinish()){
-           PlayerInfo.FromJSON(KantanGameBox.ReadGameData()); 
+            PlayerInfo.FromJSON(KantanGameBox.ReadGameData()); 
             Application.LoadLevel("TitleScene");
         }
     }

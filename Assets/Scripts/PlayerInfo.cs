@@ -8,24 +8,42 @@ public class PlayerInfo : MonoBehaviour
     [Serializable]
     public class User
     {
-        public int totalScore = 0;
-        public int highScore = 0;
-        public int score = 0;
+        [SerializeField] public int totalScore;
+        [SerializeField] public int highScore;
+        [SerializeField] public int score;
     }
-    private static User user;
+
+    private static int totalScore = 0;
+    private static int highScore = 0;
+    private static int score = 0;
+    private static bool needUpdate = false; 
 
     public static void FromJSON(string json){
-        user = JsonUtility.FromJson<User>(json);
+        Debug.Log(json.ToString());
+        //var json1 = "{\"totalScore\":\"0\",\"highScore\":\"0\",\"score\":\"0\"}"; 
+        var user = JsonUtility.FromJson<User>(json);
+        totalScore = user.totalScore;
+        highScore = user.highScore;
+        score = user.score;
     }
 
     public static string ToJSON(){
+        User user = new User();
+        user.totalScore = totalScore;
+        user.highScore = highScore;
+        user.score = score;
         return JsonUtility.ToJson(user);
     }
 
-    public static int GetScore(){return user.score;}
-    public static void SetScore(int value){user.score = value;}
-    public static int GetHighScore(){return user.highScore;}
-    public static void SetHighScore(int value){user.highScore = value;}
-    public static int GetTotalScore(){return user.totalScore;}
-    public static void SetTotalScore(int value){user.totalScore = value;}
+    public static int GetScore(){return score;}
+    public static void SetScore(int value){score = value; needUpdate=true;}
+    public static int GetHighScore(){return highScore;}
+    public static void SetHighScore(int value){highScore = value; needUpdate=true;}
+    public static int GetTotalScore(){return totalScore;}
+    public static void SetTotalScore(int value){totalScore = value; needUpdate=true;}
+    public static bool NeedUpdate(){
+        var tmp = needUpdate;
+        needUpdate = false;
+        return tmp;
+    }
 }

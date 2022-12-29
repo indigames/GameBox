@@ -48,7 +48,6 @@ public class apple : MonoBehaviour
         Destroy(gameObject);
         Count--;
         PlayerInfo.SetScore(PlayerInfo.GetScore()+1);
-        manager.UpdateScore();
     }
  
     public crash Add(Vector3 pos)

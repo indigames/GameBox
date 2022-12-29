@@ -47,9 +47,13 @@ public class KantanGameBox : MonoBehaviour
     }
 
     private static Mode mode = Mode.ModeIdle;
+    # if !UNITY_EDITOR && UNITY_WEBGL
     private static bool ready = false;
+    #else
+    private static bool ready = true;
+    #endif
     private static int _score = 0;
-    private static string _data = "";
+    private static string _data = "{}";
     private static bool _success = false;
 
     public void Ready(){
@@ -64,38 +68,49 @@ public class KantanGameBox : MonoBehaviour
         if(ready){
             if(mode == Mode.ModeGameStart){
                 # if !UNITY_EDITOR && UNITY_WEBGL
-                _GameStart();
-                _DebugOut("GameStart-Unity");
-                #endif
                 mode = Mode.ModeGameStartWait;
+                _DebugOut("GameStart-Unity");
+                _GameStart();
+                #else
+                mode = Mode.ModeGameStartFinish;
+                #endif
             }
             else if(mode == Mode.ModeGameEnd){
                 # if !UNITY_EDITOR && UNITY_WEBGL
-                _GameEnd(_score);
-                _DebugOut("GameEnd-Unity");
-                #endif
                 mode = Mode.ModeGameEndWait;
+                _DebugOut("GameEnd-Unity");
+                _GameEnd(_score);
+                #else
+                mode = Mode.ModeGameEndFinish;
+                #endif
             }
             else if(mode == Mode.ModeGameSave){
                 # if !UNITY_EDITOR && UNITY_WEBGL
-                _GameSave(_data);
-                _DebugOut("GameSave-Unity");
-                #endif
                 mode = Mode.ModeGameSaveWait;
+                _DebugOut("GameSave-Unity");
+                _GameSave(_data);
+                #else
+                mode = Mode.ModeGameSaveFinish;
+                #endif
             }
             else if(mode == Mode.ModeGameGetData){
                 # if !UNITY_EDITOR && UNITY_WEBGL
-                _GameGetData();
-                _DebugOut("GameGetData-Unity");
-                #endif
                 mode = Mode.ModeGameGetDataWait;
+                _DebugOut("GameGetData-Unity");
+                _GameGetData();
+                #else
+                Debug.Log("mode = Mode.ModeGameGetDataFinish");
+                mode = Mode.ModeGameGetDataFinish;
+                #endif
             }
             else if(mode == Mode.ModeShowRewardAd){
                 # if !UNITY_EDITOR && UNITY_WEBGL
-                _ShowRewardAd();
-                _DebugOut("ShowRewardAd-Unity");
-                #endif
                 mode = Mode.ModeShowRewardAdWait;
+                _DebugOut("ShowRewardAd-Unity");
+                _ShowRewardAd();
+                #else
+                mode = Mode.ModeShowRewardAdFinish;
+                #endif
             }
         }
     }
@@ -103,7 +118,7 @@ public class KantanGameBox : MonoBehaviour
     ///////////////////////////////////////////
     public void GameStartFinish(){
         # if !UNITY_EDITOR && UNITY_WEBGL
-        _DebugOut("GameStartFinish");
+        _DebugOut("GameStartFinish-Unity");
         #endif
         if(mode == Mode.ModeGameStartWait){
             mode = Mode.ModeGameStartFinish;
@@ -121,7 +136,7 @@ public class KantanGameBox : MonoBehaviour
     ///////////////////////////////////////////
     public void GameEndFinish(){
         # if !UNITY_EDITOR && UNITY_WEBGL
-        _DebugOut("GameEndFinish");
+        _DebugOut("GameEndFinish-Unity");
         #endif
         if(mode == Mode.ModeGameEndWait){
             mode = Mode.ModeGameEndFinish;
@@ -140,7 +155,7 @@ public class KantanGameBox : MonoBehaviour
     ///////////////////////////////////////////
     public void GameSaveFinish(){
         # if !UNITY_EDITOR && UNITY_WEBGL
-        _DebugOut("GameSaveFinish");
+        _DebugOut("GameSaveFinish-Unity");
         #endif
         if(mode == Mode.ModeGameSaveWait){
             mode = Mode.ModeGameSaveFinish;
@@ -159,7 +174,7 @@ public class KantanGameBox : MonoBehaviour
     ///////////////////////////////////////////
     public void GameGetDataFinish(string data){
         # if !UNITY_EDITOR && UNITY_WEBGL
-        _DebugOut("GameGetDataFinish");
+        _DebugOut("GameGetDataFinish-Unity");
         #endif
         if(mode == Mode.ModeGameGetDataWait){
             mode = Mode.ModeGameGetDataFinish;
@@ -176,13 +191,16 @@ public class KantanGameBox : MonoBehaviour
     }
 
     public static string ReadGameData(){
+        # if !UNITY_EDITOR && UNITY_WEBGL
+        _DebugOut("ReadGameData-Unity");
+        #endif
         return _data;
     }
 
     ///////////////////////////////////////////
     public void ShowRewardAdFinish(bool success){
         # if !UNITY_EDITOR && UNITY_WEBGL
-        _DebugOut("ShowRewardAdFinish");
+        _DebugOut("ShowRewardAdFinish-Unity");
         #endif
         if(mode == Mode.ModeShowRewardAdWait){
             mode = Mode.ModeShowRewardAdFinish;
@@ -199,6 +217,9 @@ public class KantanGameBox : MonoBehaviour
     }
 
     public static bool IsRewardAdSuccess(){
+        # if !UNITY_EDITOR && UNITY_WEBGL
+        _DebugOut("IsRewardAdSuccess-Unity");
+        #endif
         return _success;
     }
 
