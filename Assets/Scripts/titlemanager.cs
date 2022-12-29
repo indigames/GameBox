@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class titlemanager : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class titlemanager : MonoBehaviour
         }
         else if(state == State.WaitGameStart){
             if(KantanGameBox.IsGameStartFinish()){
-                Application.LoadLevel("GameScene");
+                SceneManager.LoadScene("GameScene");
                 state = State.EndTitle;
             }
         }

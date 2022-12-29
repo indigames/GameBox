@@ -8,6 +8,7 @@
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" style="position: relative; width: 100%; height: 100%;"></canvas>
     <script src="Build/docs.loader.js"></script>
+    <script src=”https://ad-img.gesoten.com/app/js/gamebox.iframe.js?v=1.5”></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -35,25 +36,26 @@
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       }).then((unityInstance) => {
-        window.alert("ready-js5");
+        console.log("ready-js");
         unityInstance.SendMessage("KantanGameBox", "Ready");
         window.unityInstance = unityInstance;
       }).catch((message) => {
         alert(message);
       });
 
+      /*
       window.game_start=function(n){
-        window.alert("game_start-js :");
-        setTimeout(n, 3000);
+        console.log("game_start-js :");
+        setTimeout(n, 1000);
       }
       window.game_end=function(n){
-        window.alert("game_end-js :" + n.score);
-        setTimeout(n.callback, 3000);
+        console.log("game_end-js :" + n.score);
+        setTimeout(n.callback, 1000);
       }
       window.game_save=function(n){
-        window.alert("game_save-js :" + n.data);
+        console.log("game_save-js :" + n.data);
         document.cookie = 'data=' + n.data;
-        setTimeout(n.callback, 3000);
+        setTimeout(n.callback, 1000);
       }
       window.game_get_data=function(n){
         var data = JSON.stringify({});
@@ -64,60 +66,61 @@
             data = content[1]
           }
          })
-        window.alert("game_get_data-js :" + data);
-        setTimeout(n.callback(data), 3000);
+         console.log("game_get_data-js :" + data);
+        setTimeout(n.callback(data), 1000);
       }
       window.show_reward_ad=function(n){
-        window.alert("show_reward_ad-js");
-        setTimeout(n.reward_success_callback, 3000);
-        setTimeout(n.reward_fail_callback, 3000);
+        console.log("show_reward_ad-js");
+        setTimeout(n.reward_success_callback, 1000);
+        setTimeout(n.reward_fail_callback, 1000);
       }
+      */
 
       window.GameStart=function(){
-        window.alert("GameStart-js");
+        console.log("GameStart-js");
         var callback_start =function( ) {
-          window.alert("callback_start-js");
+          console.log("callback_start-js");
           window.unityInstance.SendMessage("KantanGameBox", "GameStartFinish");
         };
         window.game_start(callback_start);
       }
 
       window.GameEnd=function(scr){
-        window.alert("GameEnd-js");
+        console.log("GameEnd-js");
         var callback_end =function( ) {
-          window.alert("callback_end-js");
+          console.log("callback_end-js");
           window.unityInstance.SendMessage("KantanGameBox", "GameEndFinish");
         };
         window.game_end({callback: callback_end, score: scr});
       }
 
       window.GameSave=function(dat){
-        window.alert("GameSave-js");
+        console.log("GameSave-js");
         var callback_save =function( ) {
-          window.alert("callback_save-js");
+          console.log("callback_save-js");
           window.unityInstance.SendMessage("KantanGameBox", "GameSaveFinish");
         };
         window.game_save({callback: callback_save, data: dat});
       }
 
       window.GameGetData=function(){
-        window.alert("GameGetData-js");
+        console.log("GameGetData-js");
         var callback_getdata =function(dat) {
-          window.alert("callback_getdata-js");
+          console.log("callback_getdata-js");
           window.unityInstance.SendMessage("KantanGameBox", "GameGetDataFinish", dat);
         };
         window.game_get_data({callback: callback_getdata});
       }
 
       window.ShowRewardAd=function(){
-        window.alert("ShowRewardAd-js");
+        console.log("ShowRewardAd-js");
         var callback_success =function() {
-          window.alert("success_callback-js");
-          window.unityInstance.SendMessage("KantanGameBox", "ShowRewardAdFinish", true);
+          console.log("success_callback-js");
+          window.unityInstance.SendMessage("KantanGameBox", "ShowRewardAdFinish", 1);
         };
         var callback_fail =function() {
-          window.alert("fail_callback-js");
-          window.unityInstance.SendMessage("KantanGameBox", "ShowRewardAdFinish", false);
+          console.log("fail_callback-js");
+          window.unityInstance.SendMessage("KantanGameBox", "ShowRewardAdFinish", 0);
         };
         window.show_reward_ad({reward_success_callback: callback_success, reward_fail_callback:callback_fail});
       }

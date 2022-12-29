@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class manager : MonoBehaviour
@@ -81,7 +82,7 @@ public class manager : MonoBehaviour
         }
         else if(state == State.EndCheck){
            if(KantanGameBox.IsGameEndFinish()){
-                Application.LoadLevel("TitleScene");
+                SceneManager.LoadScene("TitleScene");
                 state =  State.EndGame;
             }
         }
