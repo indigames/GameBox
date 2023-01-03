@@ -20,12 +20,14 @@ public class titlemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Requests GameStart of KantanGameBox when the user presses the Start button
         if(state==State.WaitStartButton){
             if (Input.GetMouseButton(0)) {
                 state =State.WaitGameStart;
                 KantanGameBox.GameStart();
             }
         }
+        //Start the game when GameStart is complete.
         else if(state == State.WaitGameStart){
             if(KantanGameBox.IsGameStartFinish()){
                 SceneManager.LoadScene("GameScene");
