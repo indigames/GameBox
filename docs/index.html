@@ -45,50 +45,49 @@
           alert(message);
         });
 
-        /*  During development, this comment can be removed for smooth execution confirmation. */
-
-        window.game_start=function(n){
-          console.log("game_start-js :");
-          setTimeout(n, 1000);
-        }
-        window.game_end=function(n){
-          console.log("game_end-js :" + n.score);
-          setTimeout(n.callback, 1000);
-        }
-        window.game_save=function(n){
-          console.log("game_save-js :" + n.data);
-          document.cookie = 'data=' + n.data;
-          setTimeout(n.callback, 1000);
-        }
-        window.game_get_data=function(n){
-          var data = JSON.stringify({});
-          let r = document.cookie.split(';');
-          r.forEach(function(value) {
-            let content = value.split('=');
-            if(content[0]=="data"){
-              data = content[1]
-            }
-          })
-          console.log("game_get_data-js :" + data);
-          setTimeout(n.callback(data), 1000);
-        }
-        window.show_reward_ad=function(n){
-          console.log("show_reward_ad-js");
-
-          var a = Math.floor( Math.random() * 11 );
-          if(a > 5)
-            setTimeout(n.reward_success_callback, 1000);
-          else
-            setTimeout(n.reward_fail_callback, 1000);
-        }
-
+        /*
+          window.game_start=function(n){
+            console.log("game_start-js :");
+            setTimeout(n.callback, 1000);
+          }
+          window.game_end=function(n){
+            console.log("game_end-js :" + n.score);
+            setTimeout(n.callback, 1000);
+          }
+          window.game_save=function(n){
+            console.log("game_save-js :" + n.data);
+            document.cookie = 'data=' + n.data;
+            setTimeout(n.callback, 1000);
+          }
+          window.game_get_data=function(n){
+            var data = JSON.stringify({});
+            let r = document.cookie.split(';');
+            r.forEach(function(value) {
+              let content = value.split('=');
+              if(content[0]=="data"){
+                data = content[1]
+              }
+            })
+            console.log("game_get_data-js :" + data);
+            setTimeout(n.callback(data), 1000);
+          }
+          window.show_reward_ad=function(n){
+            console.log("show_reward_ad-js");
+            var a = Math.floor( Math.random() * 11 );
+            if(a > 5)
+              setTimeout(n.reward_success_callback, 1000);
+            else
+              setTimeout(n.reward_fail_callback, 1000);
+          }
+        */
+          
         window.GameStart=function(){
           console.log("GameStart-js");
           var callback_start =function( ) {
             console.log("callback_start-js");
             window.unityInstance.SendMessage("KantanGameBox", "GameStartFinish");
           };
-          window.game_start(callback_start);
+          window.game_start({callback: callback_start});
         }
 
         window.GameEnd=function(scr){
@@ -112,8 +111,8 @@
         window.GameGetData=function(){
           console.log("GameGetData-js");
           var callback_getdata =function(dat) {
-            console.log("callback_getdata-js");
-            window.unityInstance.SendMessage("KantanGameBox", "GameGetDataFinish", dat);
+            console.log("callback_getdata-js:");
+            window.unityInstance.SendMessage("KantanGameBox", "GameGetDataFinish", dat.gamedata || '{}');
           };
           window.game_get_data({callback: callback_getdata});
         }
