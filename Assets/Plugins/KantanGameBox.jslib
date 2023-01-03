@@ -9,7 +9,7 @@ mergeInto(LibraryManager.library, {
   },
 
   _GameSave: function (data) {
-    window.GameSave(Pointer_stringify(data));
+    window.GameSave(UTF8ToString(data));
   },
 
   _GameGetData: function () {
@@ -21,7 +21,7 @@ mergeInto(LibraryManager.library, {
   },
 
   _DebugOut: function (str) {
-    window.alert(Pointer_stringify(str));
+    window.alert(UTF8ToString(str));
   },
 
 
