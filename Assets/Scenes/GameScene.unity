@@ -192,7 +192,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 0
+  m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
@@ -987,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7750704308561047856, guid: 4c6fd2721170217499e7062da7df8743, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.6542816
+      value: 2.59
       objectReference: {fileID: 0}
     - target: {fileID: 7750704308561047856, guid: 4c6fd2721170217499e7062da7df8743, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1048,7 +1048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7750704308561047856, guid: 4c6fd2721170217499e7062da7df8743, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.091666
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 7750704308561047856, guid: 4c6fd2721170217499e7062da7df8743, type: 3}
       propertyPath: m_LocalPosition.y
